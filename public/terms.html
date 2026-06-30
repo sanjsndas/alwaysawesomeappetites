@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service · Yard Sauce</title>
+    <style>
+        /* --- CSS VARIABLES & THEME (identical to main & privacy) --- */
+        :root {
+            --primary: #1b4d3e;
+            --secondary: #c2f154;
+            --dark: #112211;
+            --light: #f4f9f4;
+            --accent: #2e8b57;
+            --text: #334433;
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            line-height: 1.8;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        /* --- PAGE HEADER (terms specific) --- */
+        .page-header {
+            background: linear-gradient(145deg, #1b4d3e, #112211);
+            padding: 70px 20px 50px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .page-header h1 span {
+            color: var(--secondary);
+        }
+
+        .page-header p {
+            color: #d0e0d0;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- CONTENT CONTAINER --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px 80px 20px;
+        }
+
+        .terms-section {
+            background: #ffffff;
+            padding: 45px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .terms-section h2 {
+            font-size: 2.0rem;
+            color: var(--primary);
+            margin-top: 35px;
+            margin-bottom: 18px;
+            border-left: 6px solid var(--secondary);
+            padding-left: 18px;
+        }
+
+        .terms-section h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .terms-section h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin: 25px 0 12px 0;
+        }
+
+        .terms-section p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #2d3d2d;
+        }
+
+        .terms-section ul, .terms-section ol {
+            margin: 15px 0 20px 30px;
+        }
+
+        .terms-section li {
+            margin-bottom: 10px;
+            font-size: 1.03rem;
+        }
+
+        .highlight-box {
+            background: #f0f8f0;
+            padding: 20px 30px;
+            border-radius: 12px;
+            border-left: 8px solid var(--secondary);
+            margin: 30px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        /* --- FOOTER (identical, includes address/phone) --- */
+        footer {
+            background-color: var(--dark);
+            color: #b0c0b0;
+            padding: 60px 20px 20px 20px;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            border-bottom: 1px solid #224422;
+            padding-bottom: 40px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #b0c0b0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.85rem;
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            .terms-section {
+                padding: 30px 20px;
+            }
+            .terms-section h2 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Yard <span>Sauce</span></div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html" class="active">Terms</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <h1>Terms of <span>Service</span></h1>
+        <p>Clear, fair, and transparent guidelines governing your relationship with Yard Sauce. Please read carefully.</p>
+    </section>
+
+    <main class="container">
+
+        <div class="terms-section">
+
+            <h2>1. Introduction & Acceptance</h2>
+            <p>Welcome to Yard Sauce LLC (“Yard Sauce”, “we”, “us”, or “our”). These Terms of Service (“Terms”) constitute a legally binding agreement between you (“Client”, “you”, or “your”) and Yard Sauce regarding your use of our website, services, and all related offerings, including but not limited to sod installation, turf management, soil testing, and landscaping consultations.</p>
+            <p>By accessing our website, requesting a service estimate, or engaging our installation teams, you agree to comply with and be bound by these Terms. If you do not agree with any part of these Terms, you must not use our services or website. We strongly recommend that you read these Terms in full before proceeding.</p>
+
+            <div class="highlight-box">
+                <p><strong>Important:</strong> These Terms contain provisions that limit our liability, govern dispute resolution, and establish your responsibilities as a client. Please review them thoroughly.</p>
+            </div>
+
+            <h2>2. Services Overview</h2>
+            <p>Yard Sauce provides professional sod installation, turf management, and related landscaping services. Our offerings include, but are not limited to:</p>
+            <ul>
+                <li><strong>Sod installation:</strong> Site preparation, grading, soil amendment, sod laying, and initial watering.</li>
+                <li><strong>Turf management:</strong> Ongoing maintenance programs, fertilization, aeration, and pest control.</li>
+                <li><strong>Consultation:</strong> On-site evaluations, soil testing, and customized lawn care plans.</li>
+                <li><strong>Digital resources:</strong> Educational content, care guides, and service scheduling via our website.</li>
+            </ul>
+            <p>All services are subject to availability and weather conditions. We reserve the right to modify or discontinue any service at any time without prior notice.</p>
+
+            <h2>3. Client Responsibilities</h2>
+            <p>To ensure the success of our services and maintain a safe working environment, you agree to the following responsibilities:</p>
+            <ul>
+                <li><strong>Access:</strong> Provide clear, unobstructed access to all areas where services will be performed. This includes moving vehicles, furniture, or debris as needed.</li>
+                <li><strong>Utilities:</strong> Notify us of any underground utilities, irrigation systems, or buried cables on your property. You are responsible for marking these locations.</li>
+                <li><strong>Pets & Children:</strong> Keep pets and children away from work areas during service hours to prevent accidents.</li>
+                <li><strong>Watering:</strong> Follow our post-installation watering guidelines diligently. Failure to water properly may void your warranty.</li>
+                <li><strong>Payment:</strong> Ensure timely payment for all services rendered as per the agreed estimate and invoicing schedule.</li>
+            </ul>
+            <p>If you fail to meet these responsibilities, we reserve the right to delay or cancel services without liability.</p>
+
+            <h2>4. Estimates, Quotes, and Pricing</h2>
+            <p>All estimates provided by Yard Sauce are based on the information you supply during the consultation. While we strive for accuracy, final pricing may vary if additional work is required (e.g., unforeseen grading challenges, debris removal, or soil contamination).</p>
+            <ul>
+                <li><strong>Written Estimates:</strong> We provide detailed written proposals that outline the scope of work, materials, labor, and total cost. This estimate is valid for 14 days from the date of issue.</li>
+                <li><strong>Change Orders:</strong> If you request changes to the scope after work begins, we will provide a revised estimate. Work on the new scope will only commence upon your written acceptance.</li>
+                <li><strong>Payment Terms:</strong> A deposit of 50% is required to secure your installation date. The remaining balance is due upon completion of the work, unless other terms are agreed in writing.</li>
+                <li><strong>Late Payments:</strong> Invoices not paid within 15 days of the due date may incur a late fee of 1.5% per month or the maximum allowed by law.</li>
+            </ul>
+
+            <h2>5. Installation Process & Warranty</h2>
+            <p>Our installation process follows industry-best practices, as described in our service documentation. We provide a limited warranty on our sod installation as follows:</p>
+            <ul>
+                <li><strong>Warranty Period:</strong> 90 days from the date of installation, covering plant failure due to improper installation or defective sod.</li>
+                <li><strong>Exclusions:</strong> The warranty does not cover damage caused by neglect, improper watering, foot traffic, pet urine, pests, diseases, extreme weather events, or failure to follow our care instructions.</li>
+                <li><strong>Warranty Claims:</strong> If you believe your lawn has a warranty issue, you must notify us in writing within the warranty period and provide clear photographic evidence. We will inspect the site and, at our discretion, replace affected areas or provide a prorated credit.</li>
+                <li><strong>No Implied Warranties:</strong> To the extent permitted by law, we disclaim all other warranties, express or implied, including merchantability and fitness for a particular purpose.</li>
+            </ul>
+
+            <h2>6. Cancellation and Rescheduling</h2>
+            <p>We understand that plans change. Our cancellation policy is designed to be fair to both parties:</p>
+            <ul>
+                <li><strong>Client Cancellation:</strong> You may cancel your service appointment up to 48 hours before the scheduled start time without penalty. Cancellations within 48 hours may be subject to a 25% restocking or rescheduling fee.</li>
+                <li><strong>Weather or Force Majeure:</strong> We reserve the right to reschedule or delay services due to inclement weather, natural disasters, or other unforeseen events. We will work with you to find a mutually agreeable alternative date.</li>
+                <li><strong>No-Show:</strong> If our team arrives at your property and cannot access the site or you are not present, a $150 trip fee may apply.</li>
+            </ul>
+
+            <h2>7. Intellectual Property</h2>
+            <p>All content on our website, including text, graphics, logos, images, videos, and software, is the property of Yard Sauce or our licensors and is protected by copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, modify, or create derivative works from any of our content without our express written consent.</p>
+            <p>The “Yard Sauce” name, logo, and tagline are trademarks of Yard Sauce LLC. Unauthorized use is strictly prohibited.</p>
+
+            <h2>8. Limitation of Liability</h2>
+            <p>To the fullest extent permitted by law, Yard Sauce, its officers, employees, agents, and subcontractors shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to our services, even if we have been advised of the possibility of such damages. Our total liability to you for any claim, whether in contract, tort, or otherwise, shall not exceed the total amount paid by you for the specific services giving rise to the claim.</p>
+            <p>This limitation applies to, but is not limited to, damage to property, lost profits, loss of use, or any other economic loss. Some jurisdictions do not allow the exclusion of certain damages, so this limitation may not apply to you.</p>
+
+            <h2>9. Indemnification</h2>
+            <p>You agree to indemnify, defend, and hold harmless Yard Sauce and its affiliates from and against any and all claims, liabilities, damages, losses, costs, and expenses (including reasonable legal fees) arising from:</p>
+            <ul>
+                <li>Your use of our website or services.</li>
+                <li>Your violation of these Terms.</li>
+                <li>Your violation of any applicable law or regulation.</li>
+                <li>Any activity on your property that causes injury or damage to our personnel or third parties.</li>
+            </ul>
+
+            <h2>10. Privacy and Data Protection</h2>
+            <p>Your privacy is important to us. Our collection and use of personal information are governed by our <a href="privacy.html" style="color: var(--primary); font-weight:600;">Privacy Policy</a>, which is incorporated into these Terms by reference. By using our services, you consent to the data practices described therein.</p>
+
+            <h2>11. Dispute Resolution and Governing Law</h2>
+            <p>These Terms are governed by and construed in accordance with the laws of the State of Ohio, without regard to its conflict of laws principles. Any dispute arising out of or relating to these Terms or our services shall be resolved exclusively through binding arbitration in Emerald Hills, Ohio, in accordance with the rules of the American Arbitration Association. Judgment on the arbitration award may be entered in any court having jurisdiction.</p>
+            <p>You waive any right to participate in a class action or class-wide arbitration against Yard Sauce. All claims must be brought in your individual capacity, and not as a plaintiff or class member in any collective proceeding.</p>
+
+            <h2>12. Termination</h2>
+            <p>We may suspend or terminate your access to our services and website at any time, with or without cause, and with or without notice. If we terminate your access due to a breach of these Terms, you will not be entitled to a refund of any unused deposits or prepaid amounts. Upon termination, all provisions of these Terms that by their nature should survive shall remain in effect.</p>
+
+            <h2>13. Modifications to Terms</h2>
+            <p>We reserve the right to update or modify these Terms at any time without prior notice. The most current version will be posted on our website with the effective date. Your continued use of our services after any changes constitutes your acceptance of the revised Terms. We encourage you to review this page periodically.</p>
+
+            <h2>14. Miscellaneous</h2>
+            <ul>
+                <li><strong>Entire Agreement:</strong> These Terms, together with our Privacy Policy and any service contracts, constitute the entire agreement between you and Yard Sauce regarding our services.</li>
+                <li><strong>Severability:</strong> If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.</li>
+                <li><strong>Waiver:</strong> Our failure to enforce any right or provision of these Terms shall not be deemed a waiver of such right or provision.</li>
+                <li><strong>Assignment:</strong> You may not assign your rights or obligations under these Terms without our prior written consent. We may assign our rights and obligations freely.</li>
+                <li><strong>Third-Party Beneficiaries:</strong> These Terms do not confer any rights upon third parties.</li>
+            </ul>
+
+            <h2>15. Contact Information</h2>
+            <p>If you have any questions, concerns, or disputes regarding these Terms of Service, please contact us:</p>
+            <div style="background: #eaf3ea; padding: 18px 25px; border-radius: 10px; margin: 20px 0;">
+                <p><strong>Yard Sauce LLC</strong><br>
+                7422 Sod Cutters Way, Suite 100, Emerald Hills, OH 44124<br>
+                Email: legal@yardsauce.com<br>
+                Phone: (555) 873-7282</p>
+            </div>
+
+            <h2>16. Additional Provisions for Commercial Clients</h2>
+            <p>If you are engaging Yard Sauce for commercial or multi-unit residential projects, the following additional provisions apply:</p>
+            <ul>
+                <li><strong>Insurance:</strong> You agree to maintain general liability insurance and name Yard Sauce as an additional insured for the duration of the project.</li>
+                <li><strong>Permits:</strong> You are responsible for obtaining any required municipal permits or approvals for the work.</li>
+                <li><strong>Site Safety:</strong> You must provide a safe work environment, including proper signage and barriers as needed.</li>
+                <li><strong>Payment Schedule:</strong> Commercial projects may require milestone-based payments as specified in your contract.</li>
+            </ul>
+
+            <h2>17. Limitation of Time to File Claims</h2>
+            <p>Any claim or cause of action arising out of or related to these Terms or our services must be filed within one (1) year after the claim arose, or it shall be forever barred.</p>
+
+            <h2>18. Electronic Communications</h2>
+            <p>By using our services, you consent to receive electronic communications from us, including emails, text messages, and notifications. You agree that all communications we provide electronically satisfy any legal requirement that such communications be in writing.</p>
+
+            <h2>19. Force Majeure</h2>
+            <p>We shall not be liable for any failure or delay in performing our obligations if such failure or delay is caused by events beyond our reasonable control, including but not limited to natural disasters, war, terrorism, strikes, supply chain disruptions, or government actions.</p>
+
+            <h2>20. Final Acceptance</h2>
+            <p>By using our website or engaging our services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. This agreement is effective as of the date you first use our services or website.</p>
+            <p><em>Last Revised: June 26, 2026</em></p>
+
+        </div> <!-- end terms-section -->
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Yard Sauce LLC</h4>
+                <p>Providing premier, scientifically-backed sod installation and turf architecture solutions for breathtaking residential and commercial transformations.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Details</h4>
+                <p><strong>Phone:</strong> (555) 873-7282</p>
+                <p><strong>Email:</strong> growth@yardsauce.com</p>
+                <p><strong>Address:</strong> 7422 Sod Cutters Way, Suite 100, Emerald Hills, OH 44124</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yard Sauce LLC. All rights reserved. Crafted for pristine greens.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

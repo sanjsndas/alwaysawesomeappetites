@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies Policy · Yard Sauce</title>
+    <style>
+        /* --- CSS VARIABLES & THEME (identical to main) --- */
+        :root {
+            --primary: #1b4d3e;
+            --secondary: #c2f154;
+            --dark: #112211;
+            --light: #f4f9f4;
+            --accent: #2e8b57;
+            --text: #334433;
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --cookie-bg: #1a2a1a;
+            --cookie-text: #e0f0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            line-height: 1.8;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        /* --- PAGE HEADER (cookies specific) --- */
+        .page-header {
+            background: linear-gradient(145deg, #1b4d3e, #0f1f0f);
+            padding: 70px 20px 50px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .page-header h1 span {
+            color: var(--secondary);
+        }
+
+        .page-header p {
+            color: #d0e0d0;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- CONTENT CONTAINER --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px 80px 20px;
+        }
+
+        .cookies-section {
+            background: #ffffff;
+            padding: 45px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .cookies-section h2 {
+            font-size: 2.0rem;
+            color: var(--primary);
+            margin-top: 35px;
+            margin-bottom: 18px;
+            border-left: 6px solid var(--secondary);
+            padding-left: 18px;
+        }
+
+        .cookies-section h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .cookies-section h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin: 25px 0 12px 0;
+        }
+
+        .cookies-section p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #2d3d2d;
+        }
+
+        .cookies-section ul, .cookies-section ol {
+            margin: 15px 0 20px 30px;
+        }
+
+        .cookies-section li {
+            margin-bottom: 10px;
+            font-size: 1.03rem;
+        }
+
+        .highlight-box {
+            background: #f0f8f0;
+            padding: 20px 30px;
+            border-radius: 12px;
+            border-left: 8px solid var(--secondary);
+            margin: 30px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95rem;
+        }
+
+        .cookie-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .cookie-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #dde8dd;
+        }
+
+        .cookie-table tr:nth-child(even) {
+            background: #f6faf6;
+        }
+
+        /* --- COOKIE CONSENT DIALOG (fixed at bottom) --- */
+        .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--cookie-bg);
+            color: var(--cookie-text);
+            padding: 20px 25px;
+            box-shadow: 0 -8px 30px rgba(0,0,0,0.4);
+            z-index: 9999;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 20px 30px;
+            border-top: 3px solid var(--secondary);
+            transition: transform 0.4s ease;
+        }
+
+        .cookie-consent.hidden {
+            transform: translateY(100%);
+            pointer-events: none;
+        }
+
+        .cookie-consent p {
+            margin: 0;
+            font-size: 1rem;
+            max-width: 700px;
+            flex: 1 1 300px;
+            color: #d0e8d0;
+        }
+
+        .cookie-consent p a {
+            color: var(--secondary);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .cookie-consent .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .cookie-btn {
+            padding: 10px 28px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cookie-btn.accept {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .cookie-btn.accept:hover {
+            background: #d4f870;
+            transform: scale(1.03);
+        }
+
+        .cookie-btn.decline {
+            background: transparent;
+            color: #c0d0c0;
+            border: 2px solid #4a6a4a;
+        }
+
+        .cookie-btn.decline:hover {
+            background: #2a3a2a;
+            border-color: var(--secondary);
+            color: white;
+        }
+
+        .cookie-btn.settings {
+            background: #2a4a2a;
+            color: #d0e0d0;
+        }
+
+        .cookie-btn.settings:hover {
+            background: #3a5a3a;
+        }
+
+        /* --- FOOTER (identical, includes address/phone) --- */
+        footer {
+            background-color: var(--dark);
+            color: #b0c0b0;
+            padding: 60px 20px 20px 20px;
+            font-size: 0.95rem;
+            margin-bottom: 0; /* no extra space because dialog is fixed */
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            border-bottom: 1px solid #224422;
+            padding-bottom: 40px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #b0c0b0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.85rem;
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            .cookies-section {
+                padding: 30px 20px;
+            }
+            .cookies-section h2 {
+                font-size: 1.7rem;
+            }
+            .cookie-consent {
+                flex-direction: column;
+                text-align: center;
+                padding: 18px 15px;
+            }
+            .cookie-consent .btn-group {
+                justify-content: center;
+            }
+            .cookie-table {
+                font-size: 0.8rem;
+            }
+            .cookie-table th, .cookie-table td {
+                padding: 8px 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cookie-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            .cookie-consent p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Yard <span>Sauce</span></div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookies.html" class="active">Cookies</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <h1>Cookies <span>Policy</span></h1>
+        <p>Understand how Yard Sauce uses cookies to enhance your experience, and exercise control over your preferences.</p>
+    </section>
+
+    <main class="container">
+
+        <div class="cookies-section">
+
+            <h2>1. What Are Cookies?</h2>
+            <p>Cookies are small text files that are placed on your device (computer, smartphone, tablet) when you visit a website. They are widely used to make websites work more efficiently, enhance user experience, and provide valuable analytical data to site owners. Cookies do not typically contain personally identifiable information, but they can store preferences and help us understand how you interact with our digital properties.</p>
+            <p>At Yard Sauce, we use cookies to deliver a seamless browsing experience, remember your preferences, and improve our services. This Cookies Policy explains what types of cookies we use, why we use them, and how you can manage your preferences.</p>
+
+            <div class="highlight-box">
+                <p><strong>Our commitment:</strong> We believe in transparency. This policy gives you full visibility into our cookie practices, so you can make informed decisions about your privacy.</p>
+            </div>
+
+            <h2>2. Types of Cookies We Use</h2>
+            <p>We categorize cookies based on their function and duration. Below is a detailed breakdown:</p>
+
+            <h3>a. Strictly Necessary Cookies</h3>
+            <p>These cookies are essential for the website to function properly. They enable core features such as page navigation, secure login, and session management. Without these cookies, our website would not operate correctly, and you would not be able to use basic services like requesting estimates or accessing your account.</p>
+            <ul>
+                <li><strong>Session cookies:</strong> Temporarily store your session ID to keep you logged in during your visit.</li>
+                <li><strong>Security cookies:</strong> Help protect against cross-site request forgery and other malicious activities.</li>
+            </ul>
+
+            <h3>b. Performance & Analytics Cookies</h3>
+            <p>These cookies collect aggregated data about how visitors use our website, such as which pages are visited most frequently, how long users spend on each page, and if they encounter errors. This information helps us optimize content and improve site performance. All data is anonymized and cannot be traced back to you personally.</p>
+            <ul>
+                <li><strong>Google Analytics:</strong> We use Google Analytics to track user behavior and generate reports on site traffic.</li>
+                <li><strong>Heatmap tools:</strong> We may use session recording tools to understand user interactions and improve usability.</li>
+            </ul>
+
+            <h3>c. Functional & Preference Cookies</h3>
+            <p>These cookies remember your choices and preferences, such as your language preference, region, or the items you have added to your quote basket. They enhance your experience by personalizing content and saving you from having to re-enter your preferences each visit.</p>
+            <ul>
+                <li><strong>Language selection:</strong> Stores your preferred language for future visits.</li>
+                <li><strong>Form data:</strong> Remembers partially filled forms to prevent data loss.</li>
+            </ul>
+
+            <h3>d. Marketing & Targeting Cookies</h3>
+            <p>With your explicit consent, we may use cookies to deliver targeted advertisements relevant to your interests. These cookies track your browsing activity across different websites and may be placed by third-party advertising networks. We use these cookies only if you have opted in via our consent banner.</p>
+            <ul>
+                <li><strong>Retargeting:</strong> Shows you relevant Yard Sauce ads on other platforms after you have visited our site.</li>
+                <li><strong>Social media:</strong> Integrates with platforms like Facebook and Instagram for sharing and advertising purposes.</li>
+            </ul>
+
+            <h2>3. Detailed Cookie Table</h2>
+            <p>Below is a comprehensive list of the specific cookies we may use, their purpose, and their duration:</p>
+
+            <table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Cookie Name</th>
+                        <th>Type</th>
+                        <th>Purpose</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>session_id</td>
+                        <td>Strictly Necessary</td>
+                        <td>Maintains user session and authentication</td>
+                        <td>Session</td>
+                    </tr>
+                    <tr>
+                        <td>csrf_token</td>
+                        <td>Strictly Necessary</td>
+                        <td>Protects against cross-site request forgery</td>
+                        <td>Session</td>
+                    </tr>
+                    <tr>
+                        <td>_ga</td>
+                        <td>Analytics</td>
+                        <td>Google Analytics: distinguishes unique users</td>
+                        <td>2 years</td>
+                    </tr>
+                    <tr>
+                        <td>_gid</td>
+                        <td>Analytics</td>
+                        <td>Google Analytics: stores and updates a unique value for each page visited</td>
+                        <td>24 hours</td>
+                    </tr>
+                    <tr>
+                        <td>_gat_gtag</td>
+                        <td>Analytics</td>
+                        <td>Google Analytics: throttles request rate</td>
+                        <td>1 minute</td>
+                    </tr>
+                    <tr>
+                        <td>lang_pref</td>
+                        <td>Functional</td>
+                        <td>Remembers your language preference</td>
+                        <td>1 year</td>
+                    </tr>
+                    <tr>
+                        <td>quote_items</td>
+                        <td>Functional</td>
+                        <td>Stores items in your service quote basket</td>
+                        <td>30 days</td>
+                    </tr>
+                    <tr>
+                        <td>cookie_consent</td>
+                        <td>Necessary</td>
+                        <td>Records your cookie consent choice</td>
+                        <td>1 year</td>
+                    </tr>
+                    <tr>
+                        <td>fr</td>
+                        <td>Marketing</td>
+                        <td>Facebook: enables ad delivery and retargeting</td>
+                        <td>3 months</td>
+                    </tr>
+                    <tr>
+                        <td>IDE</td>
+                        <td>Marketing</td>
+                        <td>Google DoubleClick: used for ad targeting</td>
+                        <td>1 year</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. Third-Party Cookies</h2>
+            <p>Some cookies are placed by third-party services that we integrate into our website. These third parties may set their own cookies to provide functionality, analytics, or advertising. We do not control these cookies, and they are subject to the third party's own privacy policies. We recommend reviewing their policies for more information.</p>
+            <ul>
+                <li><strong>Google Analytics:</strong> Provides anonymized usage data. <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--primary);">Learn more</a></li>
+                <li><strong>Facebook Pixel:</strong> Helps us measure ad performance and build audiences. <a href="https://www.facebook.com/policy.php" target="_blank" style="color:var(--primary);">Learn more</a></li>
+                <li><strong>YouTube:</strong> If we embed videos, YouTube may set cookies. <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--primary);">Learn more</a></li>
+            </ul>
+
+            <h2>5. How We Use Cookie Data</h2>
+            <p>We use the data collected via cookies for the following purposes:</p>
+            <ul>
+                <li><strong>Website improvement:</strong> Analyzing traffic patterns to identify popular content and optimize navigation.</li>
+                <li><strong>Personalization:</strong> Customizing content and offers based on your preferences and browsing history.</li>
+                <li><strong>Marketing effectiveness:</strong> Measuring the success of our advertising campaigns and refining our messaging.</li>
+                <li><strong>Security:</strong> Detecting and preventing fraudulent or malicious activity.</li>
+                <li><strong>Compliance:</strong> Meeting legal and regulatory obligations regarding data protection.</li>
+            </ul>
+
+            <h2>6. Your Consent and Control</h2>
+            <p>We respect your right to choose how cookies are used on your device. When you first visit our website, you will see a cookie consent banner that allows you to accept or decline non-essential cookies. You can change your preferences at any time by clicking the "Cookie Settings" link in the footer of our website.</p>
+            <p>You can also control cookies through your browser settings. Most browsers allow you to block or delete cookies, but please note that disabling certain cookies may affect the functionality of our website. Here are links to manage cookies in popular browsers:</p>
+            <ul>
+                <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" style="color:var(--primary);">Google Chrome</a></li>
+                <li><a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" target="_blank" style="color:var(--primary);">Mozilla Firefox</a></li>
+                <li><a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" style="color:var(--primary);">Apple Safari</a></li>
+                <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" style="color:var(--primary);">Microsoft Edge</a></li>
+            </ul>
+
+            <h2>7. Cookie Duration: Session vs. Persistent</h2>
+            <p>Cookies can be either session-based or persistent:</p>
+            <ul>
+                <li><strong>Session cookies:</strong> These cookies are temporary and are deleted from your device when you close your browser. They are used to maintain your session and enable core functionality.</li>
+                <li><strong>Persistent cookies:</strong> These cookies remain on your device for a specified period or until you manually delete them. They are used to remember your preferences and settings for future visits.</li>
+            </ul>
+
+            <h2>8. Updates to This Cookies Policy</h2>
+            <p>We may update this Cookies Policy from time to time to reflect changes in technology, legal requirements, or our business practices. Any changes will be posted on this page with an updated "Last Revised" date. We encourage you to review this policy periodically. If we make significant changes, we will notify you via a prominent notice on our website.</p>
+
+            <h2>9. Do Not Track Signals</h2>
+            <p>Some browsers offer a "Do Not Track" (DNT) feature that signals your preference to websites. At present, we do not respond to DNT signals because there is no universally accepted standard for handling them. However, you can control cookie usage through your browser settings and our consent banner as described above.</p>
+
+            <h2>10. Contact Us</h2>
+            <p>If you have any questions, concerns, or requests regarding this Cookies Policy or our data practices, please reach out to us:</p>
+            <div style="background: #eaf3ea; padding: 18px 25px; border-radius: 10px; margin: 20px 0;">
+                <p><strong>Yard Sauce LLC</strong><br>
+                7422 Sod Cutters Way, Suite 100, Emerald Hills, OH 44124<br>
+                Email: privacy@yardsauce.com<br>
+                Phone: (555) 873-7282</p>
+            </div>
+
+            <h2>11. Additional Resources</h2>
+            <p>For more information about cookies and how to manage them, you can visit the following external resources:</p>
+            <ul>
+                <li><a href="https://www.aboutcookies.org/" target="_blank" style="color:var(--primary);">AboutCookies.org</a></li>
+                <li><a href="https://www.youronlinechoices.com/" target="_blank" style="color:var(--primary);">YourOnlineChoices (EU)</a></li>
+                <li><a href="https://www.ftc.gov/site-information/privacy-policy/internet-cookies" target="_blank" style="color:var(--primary);">FTC: Internet Cookies</a></li>
+            </ul>
+
+            <h2>12. Final Provisions</h2>
+            <p>This Cookies Policy is an integral part of our overall <a href="privacy.html" style="color:var(--primary); font-weight:600;">Privacy Policy</a> and <a href="terms.html" style="color:var(--primary); font-weight:600;">Terms of Service</a>. By using our website, you acknowledge that you have read and understood this policy. If you do not agree to the use of cookies as described, please adjust your browser settings or refrain from using our site.</p>
+            <p><em>Last Revised: June 26, 2026</em></p>
+
+        </div> <!-- end cookies-section -->
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Yard Sauce LLC</h4>
+                <p>Providing premier, scientifically-backed sod installation and turf architecture solutions for breathtaking residential and commercial transformations.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Details</h4>
+                <p><strong>Phone:</strong> (555) 873-7282</p>
+                <p><strong>Email:</strong> growth@yardsauce.com</p>
+                <p><strong>Address:</strong> 7422 Sod Cutters Way, Suite 100, Emerald Hills, OH 44124</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yard Sauce LLC. All rights reserved. Crafted for pristine greens.</p>
+        </div>
+    </footer>
+
+    <!-- COOKIE CONSENT DIALOG (fixed at bottom) -->
+    <div id="cookieConsent" class="cookie-consent">
+        <p>
+            We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept", you consent to our use of cookies. You can also manage your preferences or decline non-essential cookies. 
+            <a href="cookies.html">Learn more</a>.
+        </p>
+        <div class="btn-group">
+            <button id="acceptCookies" class="cookie-btn accept">Accept</button>
+            <button id="declineCookies" class="cookie-btn decline">Decline</button>
+            <button id="settingsCookies" class="cookie-btn settings">Settings</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Check if consent has already been given
+            const consent = localStorage.getItem('cookie_consent');
+            const dialog = document.getElementById('cookieConsent');
+
+            if (consent) {
+                dialog.classList.add('hidden');
+            }
+
+            // Accept button
+            document.getElementById('acceptCookies').addEventListener('click', function() {
+                localStorage.setItem('cookie_consent', 'accepted');
+                dialog.classList.add('hidden');
+                // Optionally, you could enable analytics/tracking scripts here
+                console.log('Cookies accepted.');
+            });
+
+            // Decline button
+            document.getElementById('declineCookies').addEventListener('click', function() {
+                localStorage.setItem('cookie_consent', 'declined');
+                dialog.classList.add('hidden');
+                // Optionally, disable non-essential cookies
+                console.log('Cookies declined.');
+            });
+
+            // Settings button (just hides dialog for now, but you could open a settings panel)
+            document.getElementById('settingsCookies').addEventListener('click', function() {
+                // For demonstration, we just hide the dialog and store a preference
+                localStorage.setItem('cookie_consent', 'settings');
+                dialog.classList.add('hidden');
+                console.log('Settings clicked — you could open a detailed preferences modal.');
+                alert('Cookie settings would open here. For now, we have hidden the banner. You can adjust your browser settings or revisit this page to change preferences.');
+            });
+
+            // If user clicks outside or wants to re-open, they could use a footer link.
+            // We also provide a way to reset consent (for testing) — uncomment if needed:
+            // window.resetCookieConsent = function() {
+            //     localStorage.removeItem('cookie_consent');
+            //     dialog.classList.remove('hidden');
+            // };
+            // Expose to console for debugging: window.resetCookieConsent()
+        })();
+    </script>
+
+</body>
+</html>

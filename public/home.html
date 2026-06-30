@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yard Sauce | Premium Sod Installation & Turf Management Services</title>
+    <style>
+        /* --- CSS VARIABLES & THEME --- */
+        :root {
+            --primary: #1b4d3e;       /* Deep Forest Green */
+            --secondary: #c2f154;     /* Electric Lime/Sauce Green */
+            --dark: #112211;          /* Rich Charcoal */
+            --light: #f4f9f4;         /* Soft Off-White */
+            --accent: #2e8b57;        /* Sea Green */
+            --text: #334433;          /* Deep Olive Grey text */
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* --- BASE RESET & ANIMATIONS --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            line-height: 1.7;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(194, 241, 84, 0.7); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(194, 241, 84, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(194, 241, 84, 0); }
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        /* --- HERO SECTION (NO HERO IMAGE) --- */
+        .hero {
+            background: linear-gradient(-45deg, #1b4d3e, #2e8b57, #112211, #1a3a2a);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            padding: 120px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--secondary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            color: #e0eee0;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 15px 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: pulseGlow 2.5s infinite;
+        }
+
+        .cta-btn:hover {
+            background-color: #fff;
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* --- MAIN CONTENT UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        /* --- IMAGES WITH ANIMATED HOVER --- */
+        .img-wrapper {
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+        }
+
+        .img-wrapper img {
+            width: 100%;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .img-wrapper:hover img {
+            transform: scale(1.08) rotate(1deg);
+        }
+
+        /* --- CARD STYLING --- */
+        .card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--primary);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-top-color: var(--secondary);
+        }
+
+        /* --- ACCORDION FOR FAQS --- */
+        .faq-item {
+            background: #fff;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .faq-item h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--dark);
+            color: #b0c0b0;
+            padding: 60px 20px 20px 20px;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            border-bottom: 1px solid #224422;
+            padding-bottom: 40px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #b0c0b0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.85rem;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Yard <span>Sauce</span></div>
+            <nav>
+                <ul>
+                    <li><a href="home.html" class="active">Home</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Pour Some Premium <span>Yard Sauce</span> On Your Lawn</h1>
+            <p>Architectural-grade sod installation and deep soil preparation engineering. We don't just lay grass; we build self-sustaining, vibrant green ecosystems that elevate your property value instantly.</p>
+            <a href="contact.html" class="cta-btn">Claim Your Free Soil Test Today</a>
+        </div>
+    </section>
+
+    <main class="container">
+
+        <section class="grid-2">
+            <div>
+                <h2>The Art & Science of Instant Turf Transformation</h2>
+                <p>Welcome to Yard Sauce, where we revolutionize properties by delivering unparalleled sod installation experiences. Homeowners often struggle with patchy, weed-infested lawns or failing seed campaigns that wash away with the first heavy rain. Relying on hit-or-miss hydroseeding or cheap turf rolls often results in long-term heartbreak. That's where our custom engineered "Yard Sauce" protocol shifts the paradigm entirely.</p>
+                <p>We treat every residential and commercial lawn as an architectural site. A thriving lawn isn't just a covering; it's a living biological system. By combining master landscaping craftsmanship with rigorous agronomic chemistry, we guarantee deep-rooting turf that stays vibrant, resilient, and lush across all changing seasons.</p>
+                <p>Our approach bypasses typical landscape shorthand. We inspect the grade, evaluate hydrological drainage channels, study light-path trajectories across your property, and tailor a grass variety explicitly fitted for your microclimate. When you select our premium services, you aren't merely buying grass; you are acquiring an elite-tier biological asset designed to thrive for decades.</p>
+            </div>
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1533460004989-cef01064af7e?auto=format&fit=crop&w=600&q=80" alt="Freshly harvested healthy premium green sod rolls">
+            </div>
+        </section>
+
+        <section style="margin-bottom: 80px;">
+            <h2 style="text-align: center; margin-bottom: 40px;">Our Comprehensive 5-Step Sod Installation Architecture</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>1. Sub-Surface Analysis</h3>
+                    <p>We start long before the turf arrives. Our agronomists extract core soil samples to inspect texture, compaction profiles, macro-nutrition imbalances, and pH. We don't believe in guesswork. Understanding what is beneath the surface determines how we treat the earth before rollout.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Excavation & Grading</h3>
+                    <p>Old, dying vegetation and aggressive weeds are thoroughly extracted. We use specialized mechanical machinery to level out micro-depressions, ensuring smooth transitions. Proper grading slopes water completely away from your foundational structures, managing heavy rainfall intelligently.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Bio-Nutrient Infusion</h3>
+                    <p>Here is where our signature "Sauce" comes in. We integrate organic compost complexes, slow-release starter root fertilizers, and custom mineral mixes into the topsoil. This primes the microbial ecosystem so your sod has instantaneous access to essential root-building components.</p>
+                </div>
+            </div>
+
+            <div class="grid-3" style="margin-top: 0;">
+                <div class="card">
+                    <h3>4. Precision Seam Layout</h3>
+                    <p>Our experienced master installers lay premium, freshly harvested sod rolls in a staggered brick pattern. This eliminates long, uninterrupted seams, optimizing water tension distribution and preventing moisture gaps. Each sod seam is tightly buttressed to eliminate visible lines from day one.</p>
+                </div>
+                <div class="card">
+                    <h3>5. Industrial Compaction Rolling</h3>
+                    <p>Immediately following layout, we execute a critical step often ignored by standard teams: heavy water-weighted rolling. This removes localized air pockets trapping roots and forms an immediate, unyielding hydraulic bond between the sod backing and your underlying soil matrix.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid-2">
+            <div class="img-wrapper">
+                <img src="https://plus.unsplash.com/premium_photo-1678677946710-11b13820d9a4?auto=format&fit=crop&w=600&q=80" alt="Exquisite freshly landscaped residential lawn with luxury sod">
+            </div>
+            <div>
+                <h2>Curated Cultivars Selected For Your Lifestyle</h2>
+                <p>No single grass type fits all environments. A lawn subjected to high-energy dogs and children demands structural properties completely distinct from a shaded backyard property beneath old oak trees. At Yard Sauce, we source local, freshly cut sod varieties customized to survive your specific region's challenges.</p>
+                <p><strong>Premium Kentucky Bluegrass:</strong> The definitive gold standard for northern climates. Celebrated for its deep, rich emerald color, soft texture underfoot, and phenomenal self-healing capability via spreading rhizomes. It thrives in abundant sunshine and handles heavy traffic gracefully.</p>
+                <p><strong>Hybrid Bermuda Grass:</strong> The ultimate southern warrior. Highly resilient against scorching heat, traffic, and droughts. Bermuda establishes rapidly, weaving an incredibly dense carpet defense network that effortlessly outperforms weeds and local pests.</p>
+                <p><strong>Turf-Type Tall Fescue:</strong> Ideal for transition zones experiencing volatile seasonal swings. Its deep-diving root networks extend deep into the earth, drawing water reserves when shallow grasses dry up. Fescue retains beautiful dark colors through challenging seasons.</p>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 80px; background: #eef5ee; padding: 40px; border-radius: 15px;">
+            <h2>Understanding the Turf Ecosystem: The Science Behind the Grass</h2>
+            <p>To realize why standard DIY sodding or cheap labor teams consistently fail within twenty-four months, one must analyze the physical science of turf transition. When a sod farm cuts grass, up to eighty percent of the plant's active root structure is left behind in the farm's fields. The remaining turf roll experiences profound botanical shock.</p>
+            <p>If placed over compacted, clay-heavy, oxygen-starved yard soil, the roots will refuse to break through. Instead, they coil tightly within the thin top-layer of the sod roll itself. The moment summer temperatures climb, the roots cook, and the lawn develops permanent brown patches or completely dies out. Yard Sauce solves this root-bounding issue entirely.</p>
+            <div class="img-wrapper" style="max-width: 500px; margin: 30px auto;">
+                <img src="https://images.unsplash.com/photo-1763074173493-d27f1675a26c?auto=format&fit=crop&w=600&q=80" alt="Professional gardener checking lawn moisture and healthy grass growth">
+            </div>
+            <p>By blending organic matter and using mechanical aeration aerators during prep, we fracture old hardpan clay structures. We generate critical macro-pores that facilitate rapid gaseous exchanges. Oxygen flows inward; carbon dioxide vents out. This allows newly laid root tips to rapidly anchor downward, tapping into safe moisture tables deeply embedded in the subterranean soil profile.</p>
+        </section>
+
+        <section class="grid-2">
+            <div>
+                <h2>The 21-Day Critical Care Roadmap</h2>
+                <p>The journey to a legendary lawn doesn't conclude when our installation machinery rolls away. The initial three weeks following a fresh installation dictates the life expectancy of your green spaces. We walk hand-in-hand with our clients, providing comprehensive water algorithms customized to the current ambient temperatures.</p>
+                <p>During Days 1 through 7, your prime directive is simple: moisture saturation. The sod must remain continuously damp. We recommend watering multiple times throughout the daylight cycle to ensure zero moisture regression. Do not step on the lawn during this initial soft stage.</p>
+                <p>During Days 8 through 14, roots will slowly begin forging structural anchors. We guide you to scale back watering frequency while systematically extending the depth of each session. This encourages roots to actively reach downward rather than lingering lazily at the wet surface.</p>
+                <p>By Days 15 through 21, your lawn begins stabilizing. We run a physical pull-test to ensure systemic root adhesion. Once cleared, you can perform your inaugural trim—setting your mower deck to its highest level to protect the young canopy.</p>
+            </div>
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1622122123829-e0490a288d04?auto=format&fit=crop&w=600&q=80" alt="Irrigation system automatic sprinklers watering a lush backyard green lawn">
+            </div>
+        </section>
+
+        <section style="margin-bottom: 80px;">
+            <h2 style="text-align:center; margin-bottom:40px;">Why Savvy Property Owners Choose Yard Sauce</h2>
+            <p style="text-align:center; max-width: 800px; margin: 0 auto 40px auto;">Investing in commercial-grade sod installation drastically boosts your immediate curb appeal and raises appraised property value instantly. We handle the brutal logistics so you can enjoy a flawless resort-quality oasis without lifting a finger.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Sourced Fresh Daily</h3>
+                    <p>Our sod is never left sitting on long-haul transport pallets baking in the sun. We harvest your specific grass order from local turf farms at dawn, shipping it directly to your driveway within hours to eliminate ambient heat stress completely.</p>
+                </div>
+                <div class="card">
+                    <h3>Laser Grade Equipment</h3>
+                    <p>We use state-of-the-art heavy machinery and optical levels to establish micro-grading across your terrain. This solves tricky standing water pooling dilemmas, keeping your yard perfectly functional and usable even after torrential downpours.</p>
+                </div>
+                <div class="card">
+                    <h3>Transparent Pricing</h3>
+                    <p>No hidden fuel charges, surprise topsoil fees, or vague estimations. Our electronic proposals outline every single metric yard, square foot, and organic component itemized cleanly so you understand precisely where your dollars go.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 60px;">
+            <h2 style="text-align: center; margin-bottom:40px;">Frequently Asked Sod Installation Questions</h2>
+            <div class="faq-item">
+                <h4>How much does professional sod installation cost?</h4>
+                <p>Pricing varies based on total square footage, the amount of intensive grading required, access restrictions for heavy Machinery, and your preferred cultivar varietal. We offer complete, transparent on-site estimates that cover everything from old yard removal to initial bio-nutrient charging.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Can you install fresh sod at any time of the year?</h4>
+                <p>Sod can technically be installed anytime the ground is not frozen solid. However, early spring and mid-autumn represent optimal biological windows for cool-season grasses, while warm-season options thrive beautifully during early summer installations when root metabolism peaks.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How soon can my kids and pets play on our new Yard Sauce lawn?</h4>
+                <p>We highly advise limiting heavy footprint traffic for the first 2 to 3 weeks while the root system weaves into the subsoil base. Walking across ultra-wet new sod can cause deep heel indentations in the smooth grading beneath, altering the final appearance.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Is sod installation superior to traditional grass seeding?</h4>
+                <p>Absolutely. Seeding leaves you exposed to aggressive weed invasions, avian consumption, and catastrophic storm washouts. Sod provides an instantaneous, fully mature weed-blocking barrier that immediately establishes erosion control and delivers beautiful results instantly.</p>
+            </div>
+        </section>
+
+        <section class="grid-2">
+            <div class="img-wrapper">
+                <img src="https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?auto=format&fit=crop&w=600&q=80" alt="Beautiful modern estate with perfectly manicured lush sod installation">
+            </div>
+            <div>
+                <h2>Your Dream Outdoor Living Oasis Awaits</h2>
+                <p>Think about the freedom of stepping out into a perfect, thick backyard paradise. No more dust tracking into your clean home during dry spells, no more muddy paw prints across your hardwood floors after light rain showers, and no more spending exhausting weekends fighting stubborn dandelions with harsh chemical sprays.</p>
+                <p>Yard Sauce transforms ordinary landscapes into pristine, premium retreats. Whether you are aiming to increase market value before a high-stakes sale or designing an intimate sanctuary for family gatherings, our master technicians bring unparalleled passion, focus, and engineering excellence to your property line.</p>
+                <p>Don't spend another season staring at a lackluster, thin lawn. Contact our team today, review our design choices, and watch us orchestrate a magnificent landscape renaissance right before your eyes.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Yard Sauce LLC</h4>
+                <p>Providing premier, scientifically-backed sod installation and turf architecture solutions for breathtaking residential and commercial transformations.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Details</h4>
+                <p><strong>Phone:</strong> (555) 873-7282</p>
+                <p><strong>Email:</strong> growth@yardsauce.com</p>
+                <p><strong>Address:</strong> 7422 Sod Cutters Way, Suite 100, Emerald Hills, OH 44124</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yard Sauce LLC. All rights reserved. Crafted for pristine greens.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

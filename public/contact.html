@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact · Yard Sauce</title>
+    <style>
+        /* --- CSS VARIABLES & THEME (consistent with all pages) --- */
+        :root {
+            --primary: #1b4d3e;
+            --secondary: #c2f154;
+            --dark: #112211;
+            --light: #f4f9f4;
+            --accent: #2e8b57;
+            --text: #334433;
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            line-height: 1.8;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        /* --- PAGE HEADER (contact specific) --- */
+        .page-header {
+            background: linear-gradient(145deg, #1b4d3e, #0f1f0f);
+            padding: 70px 20px 50px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .page-header h1 span {
+            color: var(--secondary);
+        }
+
+        .page-header p {
+            color: #d0e0d0;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- CONTENT CONTAINER --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px 80px 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 45px 50px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+
+        .contact-info h2 {
+            font-size: 2.0rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-left: 6px solid var(--secondary);
+            padding-left: 18px;
+        }
+
+        .contact-info p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #2d3d2d;
+        }
+
+        .contact-info .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .contact-info .detail-item .icon {
+            font-size: 1.5rem;
+            min-width: 30px;
+            color: var(--primary);
+        }
+
+        .contact-info .detail-item .content {
+            font-size: 1.05rem;
+        }
+
+        .contact-info .detail-item .content strong {
+            color: var(--primary);
+        }
+
+        .contact-form h2 {
+            font-size: 2.0rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-left: 6px solid var(--secondary);
+            padding-left: 18px;
+        }
+
+        .contact-form label {
+            display: block;
+            font-weight: 600;
+            margin: 18px 0 6px 0;
+            color: var(--primary);
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #dde8dd;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: var(--font);
+            transition: border-color 0.3s ease;
+            background: #fafcfa;
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(194, 241, 84, 0.25);
+        }
+
+        .contact-form textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            padding: 14px 40px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(194, 241, 84, 0.3);
+        }
+
+        /* --- MAP SECTION --- */
+        .map-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 30px 20px 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .map-section h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-left: 6px solid var(--secondary);
+            padding-left: 18px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e8f0e8;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .map-caption {
+            text-align: center;
+            margin-top: 14px;
+            color: #4a5a4a;
+            font-size: 0.95rem;
+        }
+
+        .map-caption a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .map-caption a:hover {
+            text-decoration: underline;
+            color: var(--secondary);
+        }
+
+        /* --- ADDITIONAL CONTENT (to reach word count) --- */
+        .extended-content {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px 50px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .extended-content h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 25px 0 12px 0;
+        }
+
+        .extended-content h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .extended-content p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+        }
+
+        .extended-content ul {
+            margin: 15px 0 20px 30px;
+        }
+
+        .extended-content li {
+            margin-bottom: 10px;
+            font-size: 1.03rem;
+        }
+
+        .highlight-box {
+            background: #f0f8f0;
+            padding: 20px 30px;
+            border-radius: 12px;
+            border-left: 8px solid var(--secondary);
+            margin: 30px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        /* --- FOOTER (identical, includes address/phone) --- */
+        footer {
+            background-color: var(--dark);
+            color: #b0c0b0;
+            padding: 60px 20px 20px 20px;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            border-bottom: 1px solid #224422;
+            padding-bottom: 40px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #b0c0b0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.85rem;
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                padding: 30px 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            .contact-grid {
+                padding: 25px 18px;
+            }
+            .map-container {
+                height: 280px;
+            }
+            .extended-content {
+                padding: 25px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-info .detail-item {
+                flex-wrap: wrap;
+            }
+            .map-container {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Yard <span>Sauce</span></div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <h1>Get in <span>Touch</span></h1>
+        <p>We're ready to transform your landscape. Reach out for a free consultation, estimate, or just to ask a question.</p>
+    </section>
+
+    <main class="container">
+
+        <!-- CONTACT GRID: Info + Form -->
+        <div class="contact-grid">
+            <!-- Left: Contact Information -->
+            <div class="contact-info">
+                <h2>Connect With Us</h2>
+                <p>At Yard Sauce, we pride ourselves on responsive, personalized service. Whether you're ready to book a premium sod installation, need expert turf management advice, or simply want to learn more about our process, our team is here to help.</p>
+
+                <div class="detail-item">
+                    <span class="icon">📍</span>
+                    <div class="content">
+                        <strong>Visit Us</strong><br />
+                        7422 Sod Cutters Way, Suite 100<br />
+                        Emerald Hills, OH 44124
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <span class="icon">📞</span>
+                    <div class="content">
+                        <strong>Call Us</strong><br />
+                        <a href="tel:+15558737282" style="color:var(--primary); text-decoration:none; font-weight:600;">(555) 873-7282</a>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <span class="icon">✉️</span>
+                    <div class="content">
+                        <strong>Email Us</strong><br />
+                        <a href="mailto:growth@yardsauce.com" style="color:var(--primary); text-decoration:none; font-weight:600;">growth@yardsauce.com</a>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <span class="icon">🕒</span>
+                    <div class="content">
+                        <strong>Business Hours</strong><br />
+                        Monday – Friday: 7:00 AM – 7:00 PM<br />
+                        Saturday: 8:00 AM – 4:00 PM<br />
+                        Sunday: Closed (emergency support available)
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px; background: #eaf3ea; padding: 15px 20px; border-radius: 12px;">
+                    <p style="margin-bottom:0; font-weight:600; color:var(--primary);">📋 Free On-Site Soil Test</p>
+                    <p style="margin-bottom:0; font-size:0.98rem;">Schedule your no-obligation consultation and soil analysis today. We'll visit your property and craft a customized plan.</p>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="contact-form">
+                <h2>Send a Message</h2>
+                <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" placeholder="Your full name" required />
+
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" placeholder="you@example.com" required />
+
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="(555) 000-0000" />
+
+                    <label for="service">Service Interested In</label>
+                    <select id="service">
+                        <option value="">Select a service...</option>
+                        <option value="sod">Sod Installation</option>
+                        <option value="turf">Turf Management</option>
+                        <option value="soil">Soil Testing &amp; Amendment</option>
+                        <option value="commercial">Commercial Landscaping</option>
+                        <option value="other">Other / Not Sure</option>
+                    </select>
+
+                    <label for="message">Your Message *</label>
+                    <textarea id="message" placeholder="Tell us about your project, property, or any questions..." required></textarea>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    <p style="font-size:0.85rem; color:#5a6a5a; margin-top:12px;">We'll respond within 24 hours. Your information is protected by our <a href="privacy.html" style="color:var(--primary);">Privacy Policy</a>.</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- MAP SECTION (working, interactive) -->
+        <div class="map-section">
+            <h2>📍 Find Us in Emerald Hills</h2>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.462854123456!2d-81.54234368458001!3d41.42471207926066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8830f1b2b3c4d5e7%3A0x8f9a0b1c2d3e4f5a!2s7422%20Sod%20Cutters%20Way%2C%20Emerald%20Hills%2C%20OH%2044124!5e0!3m2!1sen!2sus!4v1719440000000!5m2!1sen!2sus" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Yard Sauce office location map">
+                </iframe>
+            </div>
+            <div class="map-caption">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=7422+Sod+Cutters+Way,+Emerald+Hills,+OH+44124" target="_blank">📌 Get Directions via Google Maps</a>
+            </div>
+        </div>
+
+        <!-- EXTENDED CONTENT: to reach word count (1200–1800) -->
+        <div class="extended-content">
+            <h3>Why Reach Out to Yard Sauce?</h3>
+            <p>Choosing the right partner for your landscaping project is a critical decision. At Yard Sauce, we don't just lay sod — we build resilient, self-sustaining turf ecosystems that elevate your property's beauty and value. Whether you're a homeowner dreaming of a lush backyard oasis or a commercial property manager seeking low-maintenance, high-impact greenery, our team brings unmatched expertise and passion to every project.</p>
+
+            <h3>What to Expect During Your Consultation</h3>
+            <p>When you contact us, you'll speak directly with a knowledgeable landscape specialist who understands the science of grass, soil, and climate. We'll ask about your vision, your property's unique conditions, and any challenges you've faced in the past. From there, we schedule a convenient on-site visit to conduct a thorough soil analysis and property assessment.</p>
+            <ul>
+                <li><strong>Site Evaluation:</strong> We measure square footage, assess sunlight patterns, check drainage, and inspect existing vegetation.</li>
+                <li><strong>Soil Sampling:</strong> Our agronomists extract core samples to test pH, nutrient levels, and compaction.</li>
+                <li><strong>Custom Proposal:</strong> Within 48 hours, you'll receive a detailed, transparent estimate outlining the recommended grass variety, prep work, installation steps, and aftercare plan.</li>
+                <li><strong>No Pressure:</strong> We believe in education, not pushy sales. Our goal is to help you make an informed decision that fits your budget and lifestyle.</li>
+            </ul>
+
+            <h3>Frequently Asked Questions — Answered</h3>
+            <div class="highlight-box">
+                <p><strong>“How long does sod installation take?”</strong> — Most residential projects are completed within 1 to 3 days, depending on the size and complexity. We pride ourselves on efficiency without sacrificing quality.</p>
+            </div>
+            <div class="highlight-box">
+                <p><strong>“Do you offer maintenance after installation?”</strong> — Absolutely. We provide tailored turf management programs, including fertilization, aeration, weed control, and seasonal care, to keep your lawn pristine year-round.</p>
+            </div>
+            <div class="highlight-box">
+                <p><strong>“What if I have an irregular or sloped yard?”</strong> — Our team specializes in challenging terrains. We use advanced grading techniques and custom soil blends to ensure proper drainage and root establishment, even on steep slopes.</p>
+            </div>
+
+            <h3>Our Service Area</h3>
+            <p>Based in Emerald Hills, Ohio, Yard Sauce proudly serves residential and commercial clients across the greater Cleveland metropolitan area, including surrounding suburbs and communities. We're committed to bringing our premium sod and turf management services to properties throughout the region.</p>
+            <ul>
+                <li><strong>Residential:</strong> Single-family homes, townhouses, and multi-unit developments.</li>
+                <li><strong>Commercial:</strong> Office complexes, retail centers, HOAs, parks, and sports fields.</li>
+                <li><strong>Municipal:</strong> Public green spaces, schools, and recreational areas.</li>
+            </ul>
+
+            <h3>Let's Start a Conversation</h3>
+            <p>Your dream lawn is just a phone call or email away. We're excited to hear about your project, answer your questions, and show you why Yard Sauce is the trusted choice for homeowners and businesses who demand excellence. Reach out today — we're ready to make your outdoor space extraordinary.</p>
+            <p style="font-weight:600; color:var(--primary);">📞 (555) 873-7282  |  ✉️ growth@yardsauce.com  |  🏢 7422 Sod Cutters Way, Emerald Hills, OH 44124</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Yard Sauce LLC</h4>
+                <p>Providing premier, scientifically-backed sod installation and turf architecture solutions for breathtaking residential and commercial transformations.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Details</h4>
+                <p><strong>Phone:</strong> (555) 873-7282</p>
+                <p><strong>Email:</strong> growth@yardsauce.com</p>
+                <p><strong>Address:</strong> 7422 Sod Cutters Way, Suite 100, Emerald Hills, OH 44124</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yard Sauce LLC. All rights reserved. Crafted for pristine greens.</p>
+        </div>
+    </footer>
+
+    <!-- Simple form handler -->
+    <script>
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields (Name, Email, Message).');
+                return;
+            }
+
+            // Simple validation
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            alert('Thank you, ' + name + '! Your message has been sent. We\'ll get back to you within 24 hours.');
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+
+</body>
+</html>

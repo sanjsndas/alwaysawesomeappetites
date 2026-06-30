@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy · Yard Sauce</title>
+    <style>
+        /* --- CSS VARIABLES & THEME (same as main) --- */
+        :root {
+            --primary: #1b4d3e;
+            --secondary: #c2f154;
+            --dark: #112211;
+            --light: #f4f9f4;
+            --accent: #2e8b57;
+            --text: #334433;
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font);
+            line-height: 1.8;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGATION (identical) --- */
+        header {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        /* --- PAGE HEADER (privacy specific) --- */
+        .page-header {
+            background: linear-gradient(145deg, #1b4d3e, #1a3a2a);
+            padding: 70px 20px 50px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .page-header h1 span {
+            color: var(--secondary);
+        }
+
+        .page-header p {
+            color: #d0e0d0;
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- CONTENT CONTAINER --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px 80px 20px;
+        }
+
+        .privacy-section {
+            background: #ffffff;
+            padding: 45px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .privacy-section h2 {
+            font-size: 2.0rem;
+            color: var(--primary);
+            margin-top: 30px;
+            margin-bottom: 18px;
+            border-left: 6px solid var(--secondary);
+            padding-left: 18px;
+        }
+
+        .privacy-section h2:first-of-type {
+            margin-top: 0;
+        }
+
+        .privacy-section h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin: 25px 0 12px 0;
+        }
+
+        .privacy-section p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #2d3d2d;
+        }
+
+        .privacy-section ul, .privacy-section ol {
+            margin: 15px 0 20px 30px;
+        }
+
+        .privacy-section li {
+            margin-bottom: 10px;
+            font-size: 1.03rem;
+        }
+
+        .highlight-box {
+            background: #f0f8f0;
+            padding: 20px 30px;
+            border-radius: 12px;
+            border-left: 8px solid var(--secondary);
+            margin: 30px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        /* --- FOOTER (identical to main, includes address/phone) --- */
+        footer {
+            background-color: var(--dark);
+            color: #b0c0b0;
+            padding: 60px 20px 20px 20px;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            border-bottom: 1px solid #224422;
+            padding-bottom: 40px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #b0c0b0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 0.85rem;
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            .privacy-section {
+                padding: 30px 20px;
+            }
+            .privacy-section h2 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Yard <span>Sauce</span></div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="privacy.html" class="active">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <h1>Privacy <span>Policy</span></h1>
+        <p>Your trust is our most valuable asset. Learn exactly how Yard Sauce handles, protects, and respects your personal data.</p>
+    </section>
+
+    <main class="container">
+
+        <div class="privacy-section">
+
+            <h2>Introduction & Our Commitment</h2>
+            <p>Yard Sauce LLC (“Yard Sauce”, “we”, “us”, or “our”) is firmly dedicated to safeguarding the privacy of every visitor, client, and partner who engages with our premium sod installation and turf management services. This comprehensive Privacy Policy explains how we collect, use, disclose, and protect your personal information when you interact with our website, request a consultation, or utilize our landscaping services. By using our website or providing your information, you consent to the practices described herein.</p>
+            <p>We believe that transparency builds lasting relationships. We have structured this policy to be clear, accessible, and detailed, so you can make informed decisions about your data. Our practices are aligned with applicable privacy regulations, including the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA), where applicable.</p>
+
+            <div class="highlight-box">
+                <p><strong>Core principle:</strong> We collect only what we need to deliver exceptional service, and we never sell or rent your personal information to third parties for marketing purposes.</p>
+            </div>
+
+            <h2>1. Information We Collect</h2>
+            <p>To provide you with premium landscaping estimates, scheduling, and customer support, we may collect several categories of personal data. This information falls into three broad groups:</p>
+
+            <h3>a. Personal Identifiers</h3>
+            <p>When you request a free soil test, schedule a consultation, or contact our team, we collect identifiers such as your full name, email address, phone number, physical property address (for service delivery), and any other contact details you provide. This data enables us to coordinate site visits, provide accurate quotes, and communicate effectively.</p>
+
+            <h3>b. Property & Project Data</h3>
+            <p>To tailor our sod installation and turf management services, we may collect details about your property, including square footage, current lawn condition, sun exposure, soil type (if known), and any specific challenges (e.g., drainage issues, pet areas, shade patterns). This information is critical for our agronomic analysis and cultivar selection.</p>
+
+            <h3>c. Technical & Usage Data</h3>
+            <p>Like most websites, our platform automatically collects certain non-identifying technical data when you browse. This includes your IP address, browser type, operating system, referring URLs, pages viewed, and timestamps. We use this aggregated information to improve site performance, track user engagement, and enhance your digital experience.</p>
+
+            <h2>2. How We Use Your Information</h2>
+            <p>Yard Sauce uses your personal data for the following legitimate purposes:</p>
+            <ul>
+                <li><strong>Service Delivery:</strong> To schedule on-site consultations, execute sod installations, conduct follow-up care visits, and manage your turf management contracts.</li>
+                <li><strong>Communication:</strong> To send you service-related updates, appointment confirmations, post-installation care instructions, and respond to your inquiries.</li>
+                <li><strong>Marketing & Education:</strong> With your explicit consent, we may send you seasonal lawn care tips, promotional offers, and company news. You can unsubscribe at any time.</li>
+                <li><strong>Improvement:</strong> To analyze usage patterns, troubleshoot technical issues, and enhance our website and service offerings.</li>
+                <li><strong>Compliance:</strong> To fulfill legal obligations, resolve disputes, and enforce our terms and conditions.</li>
+            </ul>
+            <p>We never use your sensitive personal data for automated decision-making or profiling that significantly affects you.</p>
+
+            <h2>3. Legal Basis for Processing (GDPR)</h2>
+            <p>For individuals within the European Economic Area (EEA), we process your data under the following lawful bases:</p>
+            <ul>
+                <li><strong>Contractual necessity:</strong> Processing is required to perform our contract with you (e.g., delivering sod installation services).</li>
+                <li><strong>Legitimate interests:</strong> We have a legitimate interest in improving our services, securing our website, and communicating with clients, provided your rights do not override those interests.</li>
+                <li><strong>Consent:</strong> For marketing communications and optional data collection, we rely on your explicit consent, which you may withdraw at any time.</li>
+            </ul>
+
+            <h2>4. Data Sharing & Third-Party Disclosures</h2>
+            <p>Yard Sauce does not sell, trade, or rent your personal information. We may share your data only in the following limited circumstances:</p>
+            <ul>
+                <li><strong>Service Providers:</strong> We engage trusted third-party vendors to perform functions on our behalf, such as payment processing (via secure gateways), email delivery, and data analytics. These parties are contractually bound to use your data solely for the purposes we specify and to maintain strict confidentiality.</li>
+                <li><strong>Legal Requirements:</strong> We may disclose information if required by law, court order, or governmental regulation, or to protect the rights, property, or safety of Yard Sauce, our clients, or others.</li>
+                <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, your data may be transferred to the successor entity, subject to this Privacy Policy.</li>
+            </ul>
+            <p>We do not share your data with unaffiliated third parties for their own marketing purposes.</p>
+
+            <h2>5. Data Retention</h2>
+            <p>We retain your personal data only as long as necessary to fulfill the purposes outlined in this policy, unless a longer retention period is required or permitted by law. Specifically:</p>
+            <ul>
+                <li><strong>Client records:</strong> Project files, contracts, and service history are retained for up to 7 years after the last service date to comply with warranty obligations and regulatory requirements.</li>
+                <li><strong>Marketing data:</strong> Contact information used for newsletters is retained until you unsubscribe or request deletion.</li>
+                <li><strong>Technical logs:</strong> Aggregated analytics data is retained for 2 years for performance analysis.</li>
+            </ul>
+
+            <h2>6. Your Privacy Rights</h2>
+            <p>Depending on your location, you may have certain rights regarding your personal data. We respect these rights and provide easy mechanisms for you to exercise them:</p>
+            <ul>
+                <li><strong>Access:</strong> You can request a copy of the personal data we hold about you.</li>
+                <li><strong>Rectification:</strong> You can ask us to correct any inaccurate or incomplete information.</li>
+                <li><strong>Erasure:</strong> You may request the deletion of your data, subject to legal or contractual restrictions.</li>
+                <li><strong>Restriction:</strong> You can request that we limit the processing of your data.</li>
+                <li><strong>Data Portability:</strong> You can request a machine-readable copy of your data to transfer to another service provider.</li>
+                <li><strong>Withdraw Consent:</strong> Where processing is based on consent, you can withdraw it at any time without affecting the lawfulness of prior processing.</li>
+            </ul>
+            <p>To exercise any of these rights, please contact us at <strong>privacy@yardsauce.com</strong> or call <strong>(555) 873-7282</strong>. We will respond within 30 days.</p>
+
+            <h2>7. Data Security</h2>
+            <p>Protecting your data is a top priority. We implement a comprehensive suite of physical, administrative, and technical safeguards to prevent unauthorized access, disclosure, alteration, or destruction. These measures include:</p>
+            <ul>
+                <li><strong>Encryption:</strong> All data transmitted between your browser and our site is encrypted using SSL/TLS protocols.</li>
+                <li><strong>Access Controls:</strong> Only authorized personnel have access to your personal data, and they are trained on privacy and security practices.</li>
+                <li><strong>Regular Audits:</strong> We routinely review our security policies and infrastructure to address emerging threats.</li>
+            </ul>
+            <p>While no system is completely impenetrable, we are committed to maintaining the highest standards of data security.</p>
+
+            <h2>8. Cookies & Tracking Technologies</h2>
+            <p>We use cookies and similar tracking technologies to enhance your browsing experience, analyze site traffic, and remember your preferences. Our Cookie Policy (available separately) provides detailed information about the types of cookies we use and how you can manage your preferences. You can adjust your browser settings to refuse cookies, but this may limit certain site functionalities.</p>
+
+            <h2>9. Third-Party Links</h2>
+            <p>Our website may contain links to external websites, such as our social media profiles or partner resources. We are not responsible for the privacy practices or content of these third-party sites. We encourage you to review their privacy policies before submitting any personal information.</p>
+
+            <h2>10. Children’s Privacy</h2>
+            <p>Our services are directed to adults and property owners. We do not knowingly collect personal information from children under the age of 13. If you are a parent or guardian and believe your child has provided us with personal data, please contact us, and we will promptly delete it.</p>
+
+            <h2>11. International Data Transfers</h2>
+            <p>We operate primarily within the United States. If you access our services from outside the US, please be aware that your data may be transferred to, stored, and processed in the US, where data protection laws may differ from those in your country. By using our services, you consent to such transfers.</p>
+
+            <h2>12. Updates to This Privacy Policy</h2>
+            <p>We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or technological developments. The revised policy will be posted on this page with an updated “Last Revised” date. We encourage you to review this page periodically. Material changes will be communicated via email or prominent notice on our website.</p>
+
+            <h2>13. Contact Us</h2>
+            <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please reach out to our Data Protection Officer:</p>
+            <div style="background: #eaf3ea; padding: 18px 25px; border-radius: 10px; margin: 20px 0;">
+                <p><strong>Yard Sauce LLC</strong><br>
+                Attn: Data Protection Officer<br>
+                7422 Sod Cutters Way, Suite 100, Emerald Hills, OH 44124<br>
+                Email: privacy@yardsauce.com<br>
+                Phone: (555) 873-7282</p>
+            </div>
+            <p>We are committed to resolving any privacy-related issues promptly and transparently.</p>
+
+            <h2>14. California Consumer Privacy Act (CCPA) Notice</h2>
+            <p>For California residents, we provide the following additional disclosures:</p>
+            <ul>
+                <li><strong>Categories collected:</strong> Identifiers (name, address, email, phone), commercial information (services purchased), internet/electronic activity (browsing data), and geolocation data (service address).</li>
+                <li><strong>Business purpose:</strong> To provide landscaping services, marketing, and analytics.</li>
+                <li><strong>No sale:</strong> We do not sell your personal data.</li>
+                <li><strong>Rights:</strong> You have the right to access, delete, and opt-out of the sale of your data (though we do not sell data). You may also request information about the categories of data we have shared.</li>
+            </ul>
+            <p>To exercise your CCPA rights, please contact us using the information above.</p>
+
+            <h2>15. Final Provisions</h2>
+            <p>This Privacy Policy, together with our Terms of Service, constitutes the entire agreement between you and Yard Sauce regarding data privacy and processing. If any provision of this policy is found to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.</p>
+            <p><em>Last Revised: June 26, 2026</em></p>
+
+        </div> <!-- end privacy-section -->
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Yard Sauce LLC</h4>
+                <p>Providing premier, scientifically-backed sod installation and turf architecture solutions for breathtaking residential and commercial transformations.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Details</h4>
+                <p><strong>Phone:</strong> (555) 873-7282</p>
+                <p><strong>Email:</strong> growth@yardsauce.com</p>
+                <p><strong>Address:</strong> 7422 Sod Cutters Way, Suite 100, Emerald Hills, OH 44124</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yard Sauce LLC. All rights reserved. Crafted for pristine greens.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
